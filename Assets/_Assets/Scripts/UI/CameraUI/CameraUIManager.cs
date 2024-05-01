@@ -39,7 +39,7 @@ namespace _Assets.Scripts.UI.CameraUI
                 { CameraUIState.NoCamera, noCamera },
                 { CameraUIState.SignLanguage, signLanguage }
             };
-            
+            _sendContentType = SendContentType.None;
             cameraRawImage.transform.localScale = new Vector3(-1, 1, 1);
             _webCamTexture2D = new Texture2D(16, 9);
         }
@@ -91,7 +91,15 @@ namespace _Assets.Scripts.UI.CameraUI
         private void ChangeCameraUIState(CameraUIState state)
         {
             if (_cameraUIState == state) return;
-            if (state != CameraUIState.Camera) StopWebcam();
+            if (state != CameraUIState.Camera)
+            {
+                StopWebcam();
+            }
+            else
+            {
+                _previousCameraStatus = CameraStatus.None;
+                _currentCameraStatus = CameraStatus.None;
+            }
             foreach (var kvp in _stateObjects)
             {
                 kvp.Value.SetActive(kvp.Key == state);
@@ -127,7 +135,7 @@ namespace _Assets.Scripts.UI.CameraUI
         private void ActivateCamera()
         {
             WebCamTexture = new WebCamTexture(WebCamTexture.devices[_cameraDeviceIndex].name);
-            if ((int)_sendContentType == 0) cameraRawImage.texture = WebCamTexture;
+            if (Mathf.Abs((int)_sendContentType % 2) == 1) cameraRawImage.texture = WebCamTexture;
             WebCamTexture.Play();
         }
 
