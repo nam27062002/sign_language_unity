@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using _Assets.Scripts.SignLanguage;
 using _Assets.Scripts.Singleton;
@@ -19,10 +18,7 @@ namespace _Assets.Scripts.UI.Popups
         [SerializeField] private Image circleImage2;
         [SerializeField] private float countdownTutorial;
         [SerializeField] private TextMeshProUGUI buttonText;
-        [SerializeField] private GameObject signLanguageTutorial;
-        [SerializeField] private Image signLanguageTutorialImage;
         [SerializeField] private SignLanguageType signLanguageType;
-        [SerializeField] private CameraUIManager cameraUIManager;
         
         private bool _isFinishFirstTutorial;
         private bool _canCountDownUpdate;
@@ -56,13 +52,13 @@ namespace _Assets.Scripts.UI.Popups
             {
                 UpdateText();
                 _canCountDownUpdate = true;
-                CameraUIManager.Instance.SetEventCheckHaveAnyHands();
+                CameraUIManager.Instance.SetSendContentType(SendContentType.CheckHaveAnyHands);
                 startButton.gameObject.SetActive(false);
             }
 
             else if (_followTutorial == FollowTutorial.LearnFirstSign)
             {
-                LearnFirstSignHandler();
+                CameraUIManager.Instance.SetSendContentType(SendContentType.HandTracking);
             }
         }
         
@@ -113,7 +109,7 @@ namespace _Assets.Scripts.UI.Popups
                 _followTutorial = FollowTutorial.LearnFirstSign;
                 startButton.gameObject.SetActive(true);
                 buttonText.text = "Ready";
-                ShowSignLanguage();
+                CameraUIManager.Instance.ShowSignLanguage(GameManager.Instance.signLanguageEntries.GetSignLanguage(signLanguageType).sprite);
             }
             else
             {
@@ -123,20 +119,5 @@ namespace _Assets.Scripts.UI.Popups
                 circleImage2.fillAmount = 0f;
             }
         }
-
-        private void ShowSignLanguage()
-        {
-            cameraUIManager.gameObject.SetActive(false);
-            signLanguageTutorial.SetActive(true);
-            signLanguageTutorialImage.sprite =
-                GameManager.Instance.signLanguageEntries.GetSignLanguage(signLanguageType).sprite;
-        }
-
-        private void LearnFirstSignHandler()
-        {
-            signLanguageTutorial.SetActive(false);
-            CameraUIManager.Instance.HandTrackingHandler();
-        }
-
     }
 }

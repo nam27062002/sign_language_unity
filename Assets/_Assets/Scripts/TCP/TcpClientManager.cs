@@ -4,7 +4,6 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using _Assets.Scripts.Singleton;
-using _Assets.Scripts.UI.Popups;
 using UnityEngine;
 
 namespace _Assets.Scripts.TCP
@@ -49,6 +48,7 @@ namespace _Assets.Scripts.TCP
 
         public void SendData(Texture texture, int id)
         {
+            if (texture == null) return;
             if (!CanSendRequest(id)) return;
             var data = Utils.Utils.TextureToTexture2D(texture);
             var idBytes = BitConverter.GetBytes(id);

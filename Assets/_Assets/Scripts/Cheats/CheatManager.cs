@@ -8,7 +8,7 @@ namespace _Assets.Scripts.Cheats
     {
         public void SendCameraImage()
         {
-            TcpClientManager.Instance.SendData(CameraUIManager.Instance.TextureCamera, (int)SendContentType.HandTracking);
+            TcpClientManager.Instance.SendData(CameraUIManager.Instance.WebCamTexture, (int)SendContentType.HandTracking);
         }
     }
 }

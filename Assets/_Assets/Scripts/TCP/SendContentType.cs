@@ -2,8 +2,8 @@
 {
     public enum SendContentType
     {
-        None = -1,
-        HandTracking = 0,
-        CheckHaveAnyHands = 1,
+        None = 0,
+        CheckHaveAnyHands = 0,
+        HandTracking = 1,
     }
 }
