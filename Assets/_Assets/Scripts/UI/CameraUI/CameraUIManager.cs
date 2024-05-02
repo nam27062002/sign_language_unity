@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using _Assets.Scripts.Singleton;
 using _Assets.Scripts.TCP;
+using _Assets.Scripts.UI.Popups;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -33,6 +34,7 @@ namespace _Assets.Scripts.UI.CameraUI
         
         private void Start()
         {
+            UIPredictManager.Instance.Enable = false;
             _stateObjects = new Dictionary<CameraUIState, GameObject>
             {
                 { CameraUIState.Camera, cameraRawImage.gameObject },
@@ -94,6 +96,7 @@ namespace _Assets.Scripts.UI.CameraUI
             if (state != CameraUIState.Camera)
             {
                 StopWebcam();
+                UIPredictManager.Instance.Enable = false;
             }
             else
             {
@@ -111,6 +114,7 @@ namespace _Assets.Scripts.UI.CameraUI
         {
             ChangeCameraUIState(CameraUIState.Camera);
             _sendContentType = sendContentType;
+            UIPredictManager.Instance.Enable = sendContentType == SendContentType.HandTracking;
         }
         
         private void HandleCameraDisplay(CameraStatus cameraStatus)

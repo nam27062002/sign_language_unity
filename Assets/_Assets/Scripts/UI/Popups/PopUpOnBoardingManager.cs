@@ -59,6 +59,7 @@ namespace _Assets.Scripts.UI.Popups
             else if (_followTutorial == FollowTutorial.LearnFirstSign)
             {
                 CameraUIManager.Instance.SetSendContentType(SendContentType.HandTracking);
+                UIPredictManager.Instance.Init(signLanguageType);
             }
         }
         

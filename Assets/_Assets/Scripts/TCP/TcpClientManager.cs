@@ -19,9 +19,16 @@ namespace _Assets.Scripts.TCP
         private readonly byte[] _receiveBuffer = new byte[262144]; 
         private Dictionary<int, DateTime> _lastSendTimes;
         private TimeSpan _sendInterval;
-        
+
+        #region TCP
+
         public byte[] WebCamTextureBytes { get; private set; }
         public bool HaveAnyHands { get; private set; }
+
+        public string Label { get; private set; }
+        public float Confidence { get; private set; }
+        #endregion
+
         protected override void Awake()
         {
             base.Awake();
@@ -119,10 +126,9 @@ namespace _Assets.Scripts.TCP
             switch (id)
             {
                 case (int)SendContentType.HandTracking:
-                    var label = Encoding.UTF8.GetString(data, 0, 1);
-                    var confidence = BitConverter.ToSingle(data, 1);
+                    Label = Encoding.UTF8.GetString(data, 0, 1);
+                    Confidence = BitConverter.ToSingle(data, 1);
                     var imageData = new byte[data.Length - 5];
-                    Debug.Log(label + " " + confidence);
                     Array.Copy(data, 5, imageData, 0, imageData.Length);
                     WebCamTextureBytes = imageData;
                     break;
