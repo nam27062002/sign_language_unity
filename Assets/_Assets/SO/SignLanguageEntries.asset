@@ -13,5 +13,55 @@ MonoBehaviour:
   m_Name: SignLanguageEntries
   m_EditorClassIdentifier: 
   signLanguages:
+  - type: 0
+    sprite: {fileID: 21300000, guid: 3d81ae2a92995024db71e8555cc6d634, type: 3}
+  - type: 1
+    sprite: {fileID: 21300000, guid: 155cd920f502f714cb6e10e71c3ddfa7, type: 3}
+  - type: 2
+    sprite: {fileID: 21300000, guid: 677c538230641d14b9bfb6e03b9df093, type: 3}
+  - type: 3
+    sprite: {fileID: 21300000, guid: 19484235466dcec4bb2a9dee1b0e4ffe, type: 3}
+  - type: 4
+    sprite: {fileID: 21300000, guid: a6184a1b89848034e8d01de23a50a0ec, type: 3}
+  - type: 5
+    sprite: {fileID: 21300000, guid: 027db5a209e27374fad3db64c50dcefb, type: 3}
+  - type: 6
+    sprite: {fileID: 21300000, guid: 8193a6cea0ec52e43892b618a184264b, type: 3}
+  - type: 7
+    sprite: {fileID: 21300000, guid: d575ba6d395c5494bbc97cdfffff6701, type: 3}
+  - type: 8
+    sprite: {fileID: 21300000, guid: bdd314b65f5f62e46a132f9719497e37, type: 3}
+  - type: 9
+    sprite: {fileID: 21300000, guid: 5f94d75cabfffda4e892e3c7abf79847, type: 3}
+  - type: 10
+    sprite: {fileID: 21300000, guid: 634d9fb75f42bc94fa37d6f773a818a4, type: 3}
+  - type: 11
+    sprite: {fileID: 21300000, guid: 909ad817abd13ce4abd2dbda37e39c45, type: 3}
+  - type: 12
+    sprite: {fileID: 21300000, guid: 4d7a2b66554df7d4a8df36a1d3ab5f0a, type: 3}
+  - type: 13
+    sprite: {fileID: 21300000, guid: cd893fc4ef8508d438be1da6c0c5bf07, type: 3}
+  - type: 14
+    sprite: {fileID: 21300000, guid: 9526a5ea95a64574c85f8f03b615c341, type: 3}
+  - type: 15
+    sprite: {fileID: 21300000, guid: f52bd75f206c0304fa53770a880422f2, type: 3}
+  - type: 16
+    sprite: {fileID: 21300000, guid: 1f33374c177bfe14a8d84a0952cc8bbc, type: 3}
+  - type: 17
+    sprite: {fileID: 21300000, guid: af60ec6a33a72744e8100a6102898bc8, type: 3}
+  - type: 18
+    sprite: {fileID: 21300000, guid: 8605594db0488f9409e982032b047f98, type: 3}
+  - type: 19
+    sprite: {fileID: 21300000, guid: b70f1578fc21d93439b6b20ca288af2a, type: 3}
+  - type: 20
+    sprite: {fileID: 21300000, guid: 8816f10d51970f64599f2e3c17b1f66f, type: 3}
   - type: 21
-    sprite: {fileID: 21300000, guid: 798ccadca9fdcee42a304c51f577308c, type: 3}
+    sprite: {fileID: 21300000, guid: 99604b2c71b316d40a30f533e9b369b3, type: 3}
+  - type: 22
+    sprite: {fileID: 21300000, guid: f3200f3142202e8468d3480ec4817a2a, type: 3}
+  - type: 23
+    sprite: {fileID: 21300000, guid: 69defa795cd418d4aa08db70cf4caefb, type: 3}
+  - type: 24
+    sprite: {fileID: 21300000, guid: b7b3cf5a675701948b2a3a5af1199042, type: 3}
+  - type: 25
+    sprite: {fileID: 21300000, guid: 5a9636d5a8edcda4e85166ed17a9971e, type: 3}
