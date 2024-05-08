@@ -14,7 +14,7 @@ namespace _Assets.Scripts.TCP
         [SerializeField] private int serverPort;
         [SerializeField] [Range(0,0.2f)] private float sendInterval;
         
-        private TcpClient _client;
+        private System.Net.Sockets.TcpClient _client;
         private NetworkStream _stream;
         private readonly byte[] _receiveBuffer = new byte[262144]; 
         private Dictionary<int, DateTime> _lastSendTimes;
@@ -40,7 +40,7 @@ namespace _Assets.Scripts.TCP
         {
             try
             {
-                _client = new TcpClient(serverIP, serverPort);
+                _client = new System.Net.Sockets.TcpClient(serverIP, serverPort);
                 _stream = _client.GetStream();
                 StartReceiving();
                 Debug.Log("Connected to server successfully!");

@@ -24,6 +24,7 @@ namespace _Assets.Scripts.UI.Popups
 
         private void SetImage(string letter, float precision)
         {
+            if (letter == null) return;
             var signType = (SignLanguageType)Enum.Parse(typeof(SignLanguageType), letter);
             image.sprite = GameManager.Instance.signLanguageEntries.GetSignLanguage(signType).sprite;
             

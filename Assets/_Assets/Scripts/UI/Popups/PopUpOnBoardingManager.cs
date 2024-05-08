@@ -52,13 +52,12 @@ namespace _Assets.Scripts.UI.Popups
             {
                 UpdateText();
                 _canCountDownUpdate = true;
-                CameraUIManager.Instance.SetSendContentType(SendContentType.CheckHaveAnyHands);
                 startButton.gameObject.SetActive(false);
             }
 
             else if (_followTutorial == FollowTutorial.LearnFirstSign)
             {
-                CameraUIManager.Instance.SetSendContentType(SendContentType.HandTracking);
+
                 UIPredictManager.Instance.Init(signLanguageType);
             }
         }
@@ -110,7 +109,7 @@ namespace _Assets.Scripts.UI.Popups
                 _followTutorial = FollowTutorial.LearnFirstSign;
                 startButton.gameObject.SetActive(true);
                 buttonText.text = "Ready";
-                CameraUIManager.Instance.ShowSignLanguage(GameManager.Instance.signLanguageEntries.GetSignLanguage(signLanguageType).sprite);
+                
             }
             else
             {

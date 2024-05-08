@@ -21,5 +21,23 @@ namespace _Assets.Scripts.SignLanguage
         {
             return signLanguages.FirstOrDefault(p => p.type == type);
         }
+
+        public void GetPreviousSignLanguage(ref SignLanguageType type)
+        {
+            var languageType = type;
+            var currentIndex = signLanguages.FindIndex(p => p.type == languageType);
+            if (currentIndex == -1) return;
+            var previousIndex = (currentIndex == 0) ? signLanguages.Count - 1 : currentIndex - 1;
+            type = signLanguages[previousIndex].type;
+        }
+
+        public void GetNextSignLanguage(ref SignLanguageType type)
+        {
+            var languageType = type;
+            var currentIndex = signLanguages.FindIndex(p => p.type == languageType);
+            if (currentIndex == -1) return; 
+            var nextIndex = (currentIndex == signLanguages.Count - 1) ? 0 : currentIndex + 1;
+            type = signLanguages[nextIndex].type; 
+        }
     }
 }

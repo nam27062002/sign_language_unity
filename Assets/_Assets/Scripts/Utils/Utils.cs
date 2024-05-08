@@ -1,4 +1,6 @@
-﻿using _Assets.Scripts.UI.CameraUI;
+﻿using System;
+using _Assets.Scripts.SignLanguage;
+using _Assets.Scripts.UI.CameraUI;
 using UnityEngine;
 
 namespace _Assets.Scripts.Utils
@@ -40,5 +42,49 @@ namespace _Assets.Scripts.Utils
                 _ => CameraStatus.MoreThanOne
             };
         }
+
+        public static string ConvertSignLanguageTypeToString(SignLanguageType type)
+        {
+            var s = type.ToString();
+            return $"{s.ToUpper()}{s.ToLower()}";
+        }
+        public static float GetPercentPrediction(SignLanguageType type, bool haveAnyHands, float[] prediction)
+        {
+            if (!haveAnyHands) return 0;
+            return prediction[(int)type];
+        }
+        public static (SignLanguageType, float) GetPrediction(bool haveAnyHands, float[] prediction)
+        {
+            if (!haveAnyHands)
+                return (SignLanguageType.A, 0f); 
+
+            var maxSignType = SignLanguageType.A; 
+            var maxPrediction = prediction[0]; 
+
+            for (var i = 1; i < prediction.Length; i++)
+            {
+                if (!(prediction[i] > maxPrediction)) continue;
+                maxPrediction = prediction[i]; 
+                maxSignType = (SignLanguageType)i;
+            }
+
+            return (maxSignType, maxPrediction);
+        }
+
+        
+        public static SignLanguageType RandomSignLanguageType(SignLanguageType currentSignLanguageType)
+        {
+            var values = Enum.GetValues(typeof(SignLanguageType));
+            var valuesArray = new SignLanguageType[values.Length - 1];
+            var index = 0;
+            for (var i = 0; i < values.Length; i++)
+            {
+                if ((SignLanguageType)values.GetValue(i) == currentSignLanguageType) continue;
+                valuesArray[index] = (SignLanguageType)values.GetValue(i);
+                index++;
+            }
+            return valuesArray[UnityEngine.Random.Range(0, valuesArray.Length)];
+        }
+
     }
 }
