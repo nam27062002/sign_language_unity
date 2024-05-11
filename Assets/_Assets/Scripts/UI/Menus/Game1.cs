@@ -52,7 +52,15 @@ namespace _Assets.Scripts.UI.Menus
         private float _percent;
         private SignLanguageType _signLanguageTypeSever;
         private int _score;
-        private bool _canSendData;
+        
+        private enum Status
+        {
+            Countdown, 
+            Win,
+            Gameplay
+        }
+
+        private Status _status = Status.Countdown;
         
         protected override void Awake()
         {
@@ -73,7 +81,7 @@ namespace _Assets.Scripts.UI.Menus
         
         private void Update()
         {
-            if (!_canSendData) return;
+            if (_status != Status.Gameplay) return;
             SendData();
             SetPercent();
         }
@@ -95,6 +103,7 @@ namespace _Assets.Scripts.UI.Menus
 
         private IEnumerator SetUI()
         {
+            _status = Status.Countdown;
             percentText.text = "";
             winPanel.SetActive(true);
             resultPanel.SetActive(false);
@@ -116,7 +125,7 @@ namespace _Assets.Scripts.UI.Menus
             signLanguageImage.gameObject.SetActive(false);
             letterText.text = Utils.Utils.ConvertSignLanguageTypeToString(currentSignLanguageType);
             StartCoroutine(CountDownButtonSkipHandler());
-            _canSendData = true;
+            _status = Status.Gameplay;
         }
 
         private IEnumerator CountDownTextHandler()
@@ -165,7 +174,7 @@ namespace _Assets.Scripts.UI.Menus
             var isMatch = _signLanguageTypeSever == currentSignLanguageType;
             percentText.color = isMatch ? Color.green : Color.red;
             if (!isMatch) return;
-            _canSendData = false;
+            _status = Status.Countdown;
             _score += 10;
             scoreText.text = _score.ToString();
             StartCoroutine(SetUI());
